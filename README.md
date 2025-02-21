@@ -1,1 +1,1 @@
-gerenciador de tarefas
+AMS ( Aztra Management System ) é um gerenciador de tarefas, onde foi pensando para realizar uma atividade na UNIP, com o objetivo de fazer a prototipação de um software. E decidi faze-lo funcionar de verdade.
