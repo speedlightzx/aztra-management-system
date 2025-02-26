@@ -99,9 +99,6 @@ BUSCAR
                     NOTA
                 </button>
 
-                <button className='justify-end items-end ml-12'>
-                    <SquareIcon/>
-                </button>
             </div>
 
         </div>

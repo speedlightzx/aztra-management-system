@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import AddTask from '../pagecomponents/AddTask'
 import DeleteTaskID from '../pagecomponents/DeleteTaskID'
 import ChangeTask from '../pagecomponents/ChangeTask'
+import DeleteTask from '../pagecomponents/DeleteTask'
 
 function TasksPage() {
 
@@ -24,8 +25,25 @@ function TasksPage() {
         }
     }
 
+    const checkSelect = (taskID) => {
+        if(selectedTasks.includes(taskID)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     const deleteTaskID = (taskID) => {
         var newTasks = tasks.filter((task) => task.id != taskID)
+        setTask(newTasks)
+    }
+
+    const deleteTasks = () => {
+        var newTasks = []
+        tasks.map((element, index) => {
+            if(!selectedTasks.includes(element.id)) newTasks.push(element)
+        })
+        setSelectTask([])
         setTask(newTasks)
     }
 
@@ -80,13 +98,11 @@ function TasksPage() {
       Ver todas as tarefas
       </button>
 
-     <ChangeTask changeTask={changeTask} staff={funcionarios} tasks={tasks} setTask={setTask}/>
+    <ChangeTask changeTask={changeTask} staff={funcionarios} tasks={tasks} setTask={setTask}/>
 
-      <button className='w-[200px] h-[50px] absolute top-20 right-105 text-black p-2 bg-red-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
-      Apagar Tarefa
-      </button>
+    <DeleteTask selectedTasks={selectedTasks} tasks={tasks} deleteTasks={deleteTasks} />
 
-      <DeleteTaskID tasks={tasks} deleteTask={deleteTaskID}/>
+    <DeleteTaskID tasks={tasks} deleteTask={deleteTaskID}/>
 
     <button onClick={ () => navigate('/menu') }>
     <ArrowLeft className=' absolute right-300 top-20' size={40}/>
@@ -136,11 +152,12 @@ function TasksPage() {
                     NOTA
                 </button>
 
-<label className="flex items-center ml-9 relative">
+<label className="flex items-center ml-9 relative cursor-pointer">
   <input
     type="checkbox"
     className="hidden peer absolute inset-0 cursor-pointer w-6 h-6"
      onClick={() => selectTask(task.id)}
+     checked={checkSelect(task.id)}
      />
   <div className="border-2 border-black w-6 h-6 items-center justify-center peer-checked:bg-blue-400" />
   <Check size={16} className="hidden peer-checked:block ml-[-20px]" />

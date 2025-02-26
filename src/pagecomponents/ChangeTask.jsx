@@ -141,9 +141,6 @@ function TaskInfos({ changeTask, closeModal, setTask, tasks, funcionarios }) {
       <button className={`w-[60px] ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task?.categoria]}`}>
         NOTA
       </button>
-      <button className='justify-end items-end ml-12'>
-        <SquareIcon/>
-      </button>
     </div>
   </div>
 
