@@ -3,7 +3,6 @@ import '../global.css'
 import { useState } from "react";
 
 function NewTask({ closeModal, setarTarefa, tarefas, funcionarios }) {
-  console.log(funcionarios)
     const [prazo, setPrazo] = useState("");
     const [isIndeterminado, setIsIndeterminado] = useState(false);
     const [titulotarefa, setTituloTarefa] = useState("")

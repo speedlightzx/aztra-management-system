@@ -1,4 +1,4 @@
-import { ArrowLeft, ClockIcon, SquareIcon } from 'lucide-react'
+import { ArrowLeft, Check, CheckCheckIcon, CheckIcon, ClockIcon, SquareIcon } from 'lucide-react'
 import '../global.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -13,13 +13,23 @@ function TasksPage() {
     const [tasks, setTask] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
 
     const funcionarios = ['Allan Herbert Sancho', 'Funcionário 2', 'Funcionário 3']
+    const [selectedTasks, setSelectTask] = useState([])
 
-    function deleteTaskID(taskID) {
+    const selectTask = (taskID) => {
+        if(selectedTasks.includes(taskID)) {
+            var newSelectedTasks = selectedTasks.filter((element) => element != taskID)
+            setSelectTask(newSelectedTasks)
+        } else {
+            setSelectTask([...selectedTasks, taskID])
+        }
+    }
+
+    const deleteTaskID = (taskID) => {
         var newTasks = tasks.filter((task) => task.id != taskID)
         setTask(newTasks)
     }
 
-    function changeTask(task) {
+    const changeTask = (task) => {
         let temparray = []
         temparray = tasks.filter((element) => element.id != task.id)
         temparray.push(task)
@@ -124,11 +134,19 @@ function TasksPage() {
             <div className='flex'>
                 <button className={`w-[60px] ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task.categoria]}`}>
                     NOTA
-                    </button>
-                <button className='justify-end items-end ml-12'>
-                    <SquareIcon/>
-                    </button>
-                </div>
+                </button>
+
+<label className="flex items-center ml-9 relative">
+  <input
+    type="checkbox"
+    className="hidden peer absolute inset-0 cursor-pointer w-6 h-6"
+     onClick={() => selectTask(task.id)}
+     />
+  <div className="border-2 border-black w-6 h-6 items-center justify-center peer-checked:bg-blue-400" />
+  <Check size={16} className="hidden peer-checked:block ml-[-20px]" />
+</label>
+
+            </div>
 
         </div>
 
