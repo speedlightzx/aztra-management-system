@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddTask from '../pagecomponents/AddTask'
 import DeleteTaskID from '../pagecomponents/DeleteTaskID'
+import ChangeTask from '../pagecomponents/ChangeTask'
 
 function TasksPage() {
 
@@ -11,9 +12,18 @@ function TasksPage() {
 
     const [tasks, setTask] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
 
+    const funcionarios = ['Allan Herbert Sancho', 'Funcionário 2', 'Funcionário 3']
+
     function deleteTaskID(taskID) {
         var newTasks = tasks.filter((task) => task.id != taskID)
         setTask(newTasks)
+    }
+
+    function changeTask(task) {
+        let temparray = []
+        temparray = tasks.filter((element) => element.id != task.id)
+        temparray.push(task)
+        setTask(temparray)
     }
 
     useEffect(() => {
@@ -54,15 +64,13 @@ function TasksPage() {
     return (
     <div className='bg-blue-400 w-[screen] h-screen'>
 
-<AddTask tasks={tasks} setTask={setTask}/>
+    <AddTask staff={funcionarios} tasks={tasks} setTask={setTask}/>
 
       <button className='w-[200px] h-[50px] absolute top-38 right-165 text-black p-2 bg-yellow-300 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
       Ver todas as tarefas
       </button>
 
-      <button className='w-[200px] h-[50px] absolute top-20 right-165 text-black p-2 bg-orange-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
-      Alterar Tarefa
-      </button>
+     <ChangeTask changeTask={changeTask} staff={funcionarios} tasks={tasks} setTask={setTask}/>
 
       <button className='w-[200px] h-[50px] absolute top-20 right-105 text-black p-2 bg-red-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
       Apagar Tarefa
@@ -81,13 +89,17 @@ function TasksPage() {
 
         {tasks.slice(0, 10).map((task, index) =>
         <div key={index} className={`bg-[#F5F5DC] w-[220px] h-[180px] border-7 ${categoriaCoresBORDER[task.categoria]} rounded-2xl`}> 
-        <div className={`w-[110px] place-self-center ${categoriaCoresBG[task.categoria]} rounded-4xl font-bold text-center`}>{tasks[index].categoria}</div>
+
+        <div className={`w-[110px] place-self-center ${categoriaCoresBG[task.categoria]} rounded-4xl font-bold text-center`}>
+        {tasks[index].categoria}
+        </div>
+
         <p className=' font-bold text-[10.5px] text-center underline'>{tasks[index].titulo}</p>
         
         <p className=' font-bold text-[11px] text-left flex-wrap'> 
                 <span className="text-red-500">Responsável: </span>
                 {tasks[index].responsavel}
-                </p>
+        </p>
 
         <p className=' font-bold text-[11px] text-left'> 
         <span className="text-red-500">Prazo: </span> 
@@ -105,7 +117,9 @@ function TasksPage() {
 
         </div>
 
-        <p className=' text-[12px] text-gray-400 font-bold'>ID: {tasks[index].id}</p>
+        <p className=' text-[12px] text-gray-400 font-bold'>
+        ID: {tasks[index].id
+        }</p>
         
             <div className='flex'>
                 <button className={`w-[60px] ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task.categoria]}`}>

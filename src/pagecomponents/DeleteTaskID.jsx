@@ -97,20 +97,21 @@ BUSCAR
             <div className='flex'>
                 <button className={`w-[60px] ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task?.categoria]}`}>
                     NOTA
-                    </button>
+                </button>
+
                 <button className='justify-end items-end ml-12'>
                     <SquareIcon/>
-                    </button>
-                </div>
+                </button>
+            </div>
 
         </div>
 
-        <button
+<button
 onClick={() => {
     deleteTask(task.id)
     closeModal()
 }}
- className='absolute right-58 top-120 bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
+className='absolute right-58 top-120 bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
 Confirmar
 </button>
             

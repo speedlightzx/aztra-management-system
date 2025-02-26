@@ -2,12 +2,12 @@ import { X } from 'lucide-react';
 import '../global.css'
 import { useState } from "react";
 
-function NewTask({ closeModal, setarTarefa, tarefas }) {
+function NewTask({ closeModal, setarTarefa, tarefas, funcionarios }) {
+  console.log(funcionarios)
     const [prazo, setPrazo] = useState("");
     const [isIndeterminado, setIsIndeterminado] = useState(false);
-    const funcionarios = ['Allan Herbert Sancho', 'Funcionário 2', 'Funcionário 3']
     const [titulotarefa, setTituloTarefa] = useState("")
-    const [desc, setDesc] = useState("")
+
     const [nota, setNota] = useState("")
     const [staff, setStaff] = useState("")
     const [area, setArea] = useState("")
@@ -15,7 +15,6 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
     const handleSubmit = (e) => {
       var prazo2;
       e.preventDefault();
-      if(isIndeterminado == false && !prazo) return alert('Falta um prazo.')
       if(prazo) {
         const [ano, mes, dia] =  prazo.split('-')
         prazo2 = `${dia}/${mes}/${ano}`
@@ -55,7 +54,7 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className='flex gap-x-1'>            
             <label className=" text-[20px] underline font-bold">Responsável:</label>
-            <select value={staff} onChange={(e) => setStaff(e.target.value)} className="border text-center h-8 w-50 bg-white p-2 rounded-4xl text-xs">
+            <select required value={staff} onChange={(e) => setStaff(e.target.value)} className="border text-center h-8 w-50 bg-white p-2 rounded-4xl text-xs">
             <option value="" disabled></option>
             {funcionarios.map((staff, index) => 
             <option value={staff} key={index}>{staff}</option>
@@ -67,14 +66,14 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
             <div className="flex gap-3">
               <div className="flex gap-x-1">
                 <label className="text-[20px] underline font-bold">Tarefa:</label>
-                <input value={titulotarefa} onChange={(e) => setTituloTarefa(e.target.value)} type="text" className="border p-2 bg-white rounded-4xl text-xs h-8 w-50" />
+                <input required value={titulotarefa} onChange={(e) => setTituloTarefa(e.target.value)} type="text" className="border p-2 bg-white rounded-4xl text-xs h-8 w-50" />
               </div>
 
             </div>
 
             <div className="flex">
                 <label className=" underline text-[20px] font-bold">Área:</label>
-                <select value={area} onChange={(e) => setArea(e.target.value)} className="border text-center text-xs rounded-4xl bg-white h-8 w-50">
+                <select required value={area} onChange={(e) => setArea(e.target.value)} className="border text-center text-xs rounded-4xl bg-white h-8 w-50">
                   <option value="" disabled></option>
                   <option value='Design'>Design</option>
                   <option value='SQL'>SQL</option>
@@ -85,6 +84,7 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
             <div className="flex items-center gap-2">
               <label className="text-[20px] underline font-bold">Prazo:</label>
               <input
+                required
                 type="date"
                 className="border p-2 rounded-4xl bg-white h-8 w-50"
                 value={prazo}
@@ -100,9 +100,6 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
                 Indeterminado
               </label>
             </div>
-
-            <label className="underline text-[20px] text-center font-bold">Descrição:</label>
-            <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="border p-2 rounded-md bg-white h-20"></textarea>
   
             <label className="underline text-[20px] text-center font-bold">Nota:</label>
             <textarea value={nota} onChange={(e) => setNota(e.target.value)} className="border p-2 rounded-md bg-white h-20"></textarea>
@@ -116,7 +113,7 @@ function NewTask({ closeModal, setarTarefa, tarefas }) {
     );
   }
  
-function AddTask({ tasks, setTask }) {
+function AddTask({ tasks, setTask, staff }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -126,7 +123,7 @@ function AddTask({ tasks, setTask }) {
       Adicionar Tarefa
       </button>
 
-      {isModalOpen && <NewTask tarefas={tasks} setarTarefa={setTask} closeModal={() => setIsModalOpen(false)} />}
+      {isModalOpen && <NewTask funcionarios={staff} tarefas={tasks} setarTarefa={setTask} closeModal={() => setIsModalOpen(false)} />}
 
     </div>
   );
