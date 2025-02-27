@@ -2,14 +2,18 @@ import { ArrowLeft, Check, CheckCheckIcon, CheckIcon, ClockIcon, SquareIcon } fr
 import '../global.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import AddTask from '../pagecomponents/AddTask'
-import DeleteTaskID from '../pagecomponents/DeleteTaskID'
-import ChangeTask from '../pagecomponents/ChangeTask'
-import DeleteTask from '../pagecomponents/DeleteTask'
+import AddTask from '../TasksPageComponents/AddTask'
+import DeleteTaskID from '../TasksPageComponents/DeleteTaskID'
+import ChangeTask from '../TasksPageComponents/ChangeTask'
+import DeleteTask from '../TasksPageComponents/DeleteTask'
+import Note from '../TasksPageComponents/Note'
 
 function TasksPage() {
 
     const navigate = useNavigate()
+
+    const [noteModal, setNoteModal] = useState(false)
+    const [info, setInfo] = useState("")
 
     const [tasks, setTask] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
 
@@ -92,6 +96,8 @@ function TasksPage() {
     return (
     <div className='bg-blue-400 w-[screen] h-screen'>
 
+    {noteModal && <Note desc={info} closeModal={() => setNoteModal(false)} />}
+
     <AddTask staff={funcionarios} tasks={tasks} setTask={setTask}/>
 
       <button className='w-[200px] h-[50px] absolute top-38 right-165 text-black p-2 bg-yellow-300 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
@@ -148,7 +154,11 @@ function TasksPage() {
         }</p>
         
             <div className='flex'>
-                <button className={`w-[60px] ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task.categoria]}`}>
+                <button onClick={() => {
+                    setNoteModal(true)
+                    setInfo(tasks[index].nota)
+                }}
+                className={`w-[60px] cursor-pointer ml-18 text-center border-2 rounded-4xl font-bold text-[12px] ${categoriaCoresBG[task.categoria]}`}>
                     NOTA
                 </button>
 

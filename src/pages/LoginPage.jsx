@@ -31,25 +31,6 @@ function LoginPage() {
           <button type='submit' className="bg-black text-white py-2 rounded-md text-lg shadow-md transition hover:opacity-80">
            Login
            </button>
-
-            {/* <div className="flex justify-between text-sm text-white">
-            
-              <h1 className='underline'>Esqueceu a senha?</h1>
-              <h1 className='underline'>Cadastre-se</h1>
-            
-          </div>
-
-          
-          <div className="flex items-center my-2">
-            <div className="flex-grow border-t border-white"></div>
-            <span className="mx-2 text-white text-sm">OU</span>
-            <div className="flex-grow border-t border-white"></div>
-          </div> */}
-
-          {/* <button className="flex items-center justify-center bg-white text-black py-2 rounded-md shadow-md gap-2 transition hover:opacity-80">
-            <CarIcon size={24} />
-            Continuar com o Google
-          </button> */}
           
         </form>
         
