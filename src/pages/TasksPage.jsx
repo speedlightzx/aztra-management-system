@@ -111,7 +111,7 @@ function TasksPage() {
     <DeleteTaskID tasks={tasks} deleteTask={deleteTaskID}/>
 
     <button onClick={ () => navigate('/menu') }>
-    <ArrowLeft className=' absolute right-300 top-20' size={40}/>
+    <ArrowLeft className='cursor-pointer absolute right-300 top-20' size={40}/>
     </button>
 
     <h1 className='font-bold absolute top-53 right-158 text-[20px]'>Últimas tarefas adicionadas</h1>

@@ -42,7 +42,7 @@ function NewTask({ closeModal, setarTarefa, tarefas, funcionarios }) {
       <div className="fixed bg-blue-400 inset-0 bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-[#F5F5DC] w-[600px] p-6 rounded-lg shadow-lg border-6 border-black relative">
           
-          <button className="absolute top-3 right-3 text-xl font-bold" onClick={closeModal}>
+          <button className="absolute cursor-pointer top-3 right-3 text-xl font-bold" onClick={closeModal}>
             <X size={40}/>
           </button>
           
@@ -103,7 +103,7 @@ function NewTask({ closeModal, setarTarefa, tarefas, funcionarios }) {
             <label className="underline text-[20px] text-center font-bold">Nota:</label>
             <textarea value={nota} onChange={(e) => setNota(e.target.value)} className="border p-2 rounded-md bg-white h-20"></textarea>
             
-            <button className="bg-black text-white relative left-45 p-3 rounded-md font-bold flex justify-center items-center gap-2 w-[150px]">
+            <button className="bg-black text-white cursor-pointer relative left-45 p-3 rounded-md font-bold flex justify-center items-center gap-2 w-[150px]">
               ENVIAR <span>🚀</span>
             </button>
           </form>
@@ -118,7 +118,7 @@ function AddTask({ tasks, setTask, staff }) {
   return (
     <div>
 
-    <button onClick={() => setIsModalOpen(true)} className='w-[200px] h-[50px] absolute top-38 right-225 text-black p-2 bg-blue-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
+    <button onClick={() => setIsModalOpen(true)} className='w-[200px] h-[50px] cursor-pointer absolute top-38 right-225 text-black p-2 bg-blue-500 hover:bg-blue-600 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
       Adicionar Tarefa
       </button>
 

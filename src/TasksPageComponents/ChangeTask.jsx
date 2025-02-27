@@ -31,11 +31,11 @@ function TaskInfos({ changeTask, closeModal, setTask, tasks, funcionarios }) {
       const changedTask = {
         id: task?.id,
         categoria: task?.categoria,
-        titulo: titulotarefa,
-        responsavel: staff,
+        titulo: titulotarefa ? titulotarefa : task?.titulo ,
+        responsavel: staff ? staff : task?.responsavel,
         prazo: task?.prazo,
         criadoEm: task?.criadoEm,
-        nota: nota
+        nota: nota ? nota : task?.nota
       }
 
 
@@ -48,7 +48,7 @@ function TaskInfos({ changeTask, closeModal, setTask, tasks, funcionarios }) {
      <div className='fixed bg-blue-400 inset-0 bg-opacity-50 flex items-center justify-center z-50'>
     <div className={`bg-[#F5F5DC] w-[600px] h-[560px] p-6 rounded-lg shadow-lg border-6 border-black relative`}>
 
-    <button className="absolute top-3 right-3 text-xl font-bold" onClick={closeModal}>
+    <button className="absolute cursor-pointer top-3 right-3 text-xl font-bold" onClick={closeModal}>
         <X size={40}/>
         </button>
 
@@ -77,7 +77,7 @@ function TaskInfos({ changeTask, closeModal, setTask, tasks, funcionarios }) {
                 alert('Nenhuma tarefa encontrada com esse id.')
             }
         }}
-         className='absolute right-58 top-66 bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
+         className='absolute right-58 top-66 cursor-pointer bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
         BUSCAR
         </button>
         </div>
@@ -144,7 +144,7 @@ function TaskInfos({ changeTask, closeModal, setTask, tasks, funcionarios }) {
     </div>
   </div>
 
-            <button type='submit' className="bg-black text-white relative top-3 left-45 p-3 rounded-md font-bold flex justify-center items-center gap-2 w-[150px]">
+            <button type='submit' className="bg-black text-white cursor-pointer relative top-3 left-45 p-3 rounded-md font-bold flex justify-center items-center gap-2 w-[150px]">
               ALTERAR <span>🚀</span>
             </button>
             </div>
@@ -168,7 +168,7 @@ function ChangeTask({ changeTask, tasks, setTask, staff }) {
   return (
     <div>
 
-    <button onClick={() => setIsModalOpen(!isModalOpen)} className='w-[200px] h-[50px] absolute top-20 right-165 text-black p-2 bg-orange-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
+    <button onClick={() => setIsModalOpen(!isModalOpen)} className='w-[200px] h-[50px] cursor-pointer absolute top-20 right-165 text-black p-2 bg-orange-500 hover:bg-orange-600 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
       Alterar Tarefa
       </button>
 

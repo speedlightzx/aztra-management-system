@@ -28,7 +28,7 @@ return (
         
 <div className='bg-[#F5F5DC] w-[600px] h-[560px] p-6 rounded-lg shadow-lg border-6 border-black relative'>
 
-        <button className="absolute top-3 right-3 text-xl font-bold" onClick={closeModal}>
+        <button className="absolute top-3 right-3 cursor-pointer text-xl font-bold" onClick={closeModal}>
         <X size={40}/>
         </button>
 
@@ -56,7 +56,7 @@ onClick={() => {
         alert('Nenhuma tarefa encontrada com esse id.')
     }
 }}
- className='absolute right-58 top-66 bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
+ className='absolute right-58 top-66 cursor-pointer bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
 BUSCAR
 </button>
 </div>
@@ -108,7 +108,7 @@ onClick={() => {
     deleteTask(task.id)
     closeModal()
 }}
-className='absolute right-58 top-120 bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
+className='absolute right-58 top-120 cursor-pointer bg-black border-4 border-white text-white w-[150px] h-[50px] font-bold text-2xl rounded-2xl'>
 Confirmar
 </button>
             
@@ -131,7 +131,7 @@ function DeleteTaskID({ tasks, deleteTask }) {
     return (
         <div className='bg-blue-400 w-[screen] h-[screen]'>
 
-    <button onClick={() => setSTModalOpen(!stModal)} className='w-[200px] h-[50px] absolute top-38 right-105 text-black p-2 bg-red-500 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
+    <button onClick={() => setSTModalOpen(!stModal)} className='w-[200px] h-[50px] cursor-pointer absolute top-38 right-105 text-black p-2 bg-red-500 hover:bg-red-600 rounded-2xl font-bold border-5 border-white ml-100 text-[17px] justify-center'>
       Apagar Tarefa por ID
       </button>
 

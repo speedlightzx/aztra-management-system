@@ -28,7 +28,7 @@ function LoginPage() {
             </label>
                       
                       
-          <button type='submit' className="bg-black text-white py-2 rounded-md text-lg shadow-md transition hover:opacity-80">
+          <button type='submit' className="bg-black text-white cursor-pointer py-2 rounded-md text-lg shadow-md transition hover:opacity-80">
            Login
            </button>
           
